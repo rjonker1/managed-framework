@@ -2,6 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms'
 import { Router } from '@angular/router'
 
+import {AccordionComponent} from '../shared/components/accordion/accordion';
+import {AccordionItem} from '../shared/components/accordion/accordion-item';
+import {AccordionItemHead} from '../shared/components/accordion/accordion-item-head';
+import {AccordionItemBody} from '../shared/components/accordion/accordion-item-body';
+
 import { User, UserService } from '../shared';
 
 import { Registration } from '../shared/models/registration.model'
@@ -31,11 +36,22 @@ export class RegistrationComponent implements OnInit {
     isSubmitting: boolean = false;
     registrationForm: FormGroup;
 
-    public subscriptionTypes: Array<SubscriptionType> = [
+    private itemsList:Object[] = [
+        {
+        title: 'Item 1',
+        description: 'description 1'
+        },
+        {
+        title: 'Item 2',
+        description: 'description 2'
+        }
+    ]
+
+    private subscriptionTypes: Array<SubscriptionType> = [
         { id: 1, name: '3 Sites for R3000 per month' }
     ];
 
-    public industryTypes: Array<IndustryType> = [
+    private industryTypes: Array<IndustryType> = [
         { id: 1, name: 'Technology' },
         { id: 2, name: 'Finance' },
         { id: 3, name: 'Insurance' },
@@ -52,18 +68,18 @@ export class RegistrationComponent implements OnInit {
         { id: 14, name: 'Transport' }
     ];
 
-    public companySizes: Array<CompanySize> = [
+    private companySizes: Array<CompanySize> = [
         { id: 1, name: '0-10'},
         { id: 2, name: '10-50'},
         { id: 3, name: '50-200'},
         { id: 4, name: ' 200+ employees'}
     ];
 
-    public countries: Array<Country> = [
+    private countries: Array<Country> = [
         { id: 1, name: 'South Africa'}
     ];
 
-    public provinces: Array<Province> = [
+    private provinces: Array<Province> = [
         { id: 1, name: 'Gauteng', country: this.countries[0] },
         { id: 2, name: 'Eastern Cape', country: this.countries[0] },
         { id: 3, name: 'Free State', country: this.countries[0] },
@@ -75,7 +91,7 @@ export class RegistrationComponent implements OnInit {
         { id: 9, name: 'Western Cape', country: this.countries[0] },
     ];
 
-    public cities: Array<City> = [
+    private cities: Array<City> = [
         { id: 1, name: 'Alberton', provice: this.provinces[0] },
         { id: 2, name: 'Germiston', provice: this.provinces[0] },
         { id: 3, name: 'Benoni', provice: this.provinces[0] },
@@ -86,7 +102,7 @@ export class RegistrationComponent implements OnInit {
         { id: 8, name: 'Devon', provice: this.provinces[0] },
     ];
 
-    public companyTypes: Array<CompanyType> = [
+    private companyTypes: Array<CompanyType> = [
         {id: 1, name: 'Private'},
         {id: 2, name: 'Public'},
         {id: 3, name: 'NGO'},
@@ -94,20 +110,20 @@ export class RegistrationComponent implements OnInit {
         {id: 5, name: 'Goverment'}
     ];
 
-    public howManyNumbers : Array<NumberOptions> = [
+    private howManyNumbers : Array<NumberOptions> = [
         { id: 1 },
         { id: 2 },
         { id: 3 },
         { id: 4 }
     ];
 
-    public siteYesNoDontKnow : Array<YesNoOptions> = [
+    private siteYesNoDontKnow : Array<YesNoOptions> = [
         { id: 1, name: 'Yes' },
         { id: 2, name: 'No' },
         { id: 3, name: 'I Dont Know' }
     ];
 
-    public siteYesNoOutsourced : Array<YesNoOptions> = [       
+    private siteYesNoOutsourced : Array<YesNoOptions> = [       
         { id: 2, name: 'No' },
         { id: 4, name: 'Yes - In House' },
         { id: 5, name: 'Yes - Outourced' }
